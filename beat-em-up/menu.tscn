@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://c8dsjh4bmgt8c"]
+
+[node name="Menu" type="Control" unique_id=1096520478]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=287205238]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 100.0
+offset_right = 711.0
+offset_bottom = 498.0
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=612955381]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Beat'em Up!"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1990586350]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=449861402]
+layout_mode = 2
+alignment = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer" unique_id=443644203]
+custom_minimum_size = Vector2(24, 3)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Play"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=212722804]
+custom_minimum_size = Vector2(24, 3)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Exit"
