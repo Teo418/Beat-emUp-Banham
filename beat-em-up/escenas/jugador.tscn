@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bj3404gqofk43"]
+
+[ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pj.tscn" id="1_tml57"]
+[ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njcx7"]
+radius = 3.0
+height = 14.0
+
+[node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
+
+[node name="Skin" parent="." index="0" unique_id=525006105]
+texture = ExtResource("2_jpodt")
+centered = false
+offset = Vector2(-24, -48)
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=75992838]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_njcx7")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://fuw8tvgbfune"]
+
+[ext_resource type="Script" uid="uid://ckhmg7ryurvn7" path="res://escenas/pj.gd" id="1_3jpch"]
+[ext_resource type="Texture2D" uid="uid://cd7vqouclp2de" path="res://assets/art/characters/shadow.png" id="2_7d6uc"]
+
+[node name="Personaje" type="CharacterBody2D" unique_id=416103180]
+script = ExtResource("1_3jpch")
+
+[node name="Skin" type="Sprite2D" parent="." unique_id=525006105]
+
+[node name="Sombra" type="Sprite2D" parent="." unique_id=855216036]
+texture = ExtResource("2_7d6uc")
+centered = false
+offset = Vector2(-7, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=75992838]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1097620349]
