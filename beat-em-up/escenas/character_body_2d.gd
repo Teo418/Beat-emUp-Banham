@@ -1,12 +1,5 @@
 extends CharacterBody2D
 
-# esta es la "clase padre" (mas bien la escena padre),
-# aca van a estar los atributos que luego los van a heredar
-# tanto los enemigos como los jugadores
-
-@export var vida : int
-@export var danio : int
-@export var velocidad : int
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -14,8 +7,8 @@ const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -30,10 +23,3 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-	
-func _input(event: InputEvent) -> void:
-	if(event.is_action_pressed("Pegar")):
-		var bodies :Array= $Area2D.get_overlapping_bodies()
-		if(bodies.size() == 0):
-			return
-		bodies.front().queue_free()

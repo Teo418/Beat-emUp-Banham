@@ -2,10 +2,58 @@
 
 [ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pj.tscn" id="1_tml57"]
 [ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
+[ext_resource type="Script" uid="uid://mxe2wdk6fwu" path="res://escenas/character_body_2d.gd" id="3_njcx7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njcx7"]
 radius = 3.0
 height = 14.0
+
+[sub_resource type="Animation" id="Animation_jpodt"]
+resource_name = "Caminar"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njcx7"]
+_data = {
+&"Caminar": SubResource("Animation_jpodt")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njcx7"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 0, 48, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xutah"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(48, 0, 48, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovq70"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(96, 0, 48, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as36m"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(144, 0, 48, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjfif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njcx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xutah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovq70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as36m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpodt"]
+radius = 6.0
 
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 
@@ -20,3 +68,26 @@ vframes = 10
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_njcx7")
+
+[node name="AnimationPlayer" parent="." index="3" unique_id=1097620349]
+libraries/ = SubResource("AnimationLibrary_njcx7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4" unique_id=965245360]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-46, -18)
+sprite_frames = SubResource("SpriteFrames_gjfif")
+frame_progress = 0.6806878
+
+[node name="Area2D" type="Area2D" parent="." index="5" unique_id=697031168]
+position = Vector2(11, -12)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1899991466]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_jpodt")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." index="6" unique_id=933816496]
+script = ExtResource("3_njcx7")
