@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		estaAtacando = false
 		puedeAtacar = true
 		animaciones.play("Idle")
+	print("aim: ", aim, " | golpes pos: ", golpesEnemigos.position.x)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Pegar") and puedeAtacar and not estaAtacando:
