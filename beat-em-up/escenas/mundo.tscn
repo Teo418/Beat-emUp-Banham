@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c1en63kq0clwt" path="res://escenas/juego.tscn" id="1_6ba58"]
 [ext_resource type="PackedScene" uid="uid://bj3404gqofk43" path="res://escenas/jugador.tscn" id="2_6wjgb"]
 [ext_resource type="PackedScene" uid="uid://cq8dkfblooote" path="res://escenas/objeto.tscn" id="3_glrvs"]
+[ext_resource type="PackedScene" uid="uid://dnmnxuum0gsb0" path="res://escenas/pollo.tscn" id="4_v12yk"]
 
 [node name="Mundo" type="Node2D" unique_id=476764460]
 
@@ -13,3 +14,6 @@ position = Vector2(66, 44)
 
 [node name="Jugador" parent="." unique_id=416103180 instance=ExtResource("2_6wjgb")]
 position = Vector2(33, 43)
+
+[node name="Pollo" parent="." unique_id=1628391654 instance=ExtResource("4_v12yk")]
+position = Vector2(80, 55)
