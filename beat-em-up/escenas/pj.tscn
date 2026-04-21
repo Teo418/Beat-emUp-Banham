@@ -13,6 +13,4 @@ texture = ExtResource("2_7d6uc")
 centered = false
 offset = Vector2(-7, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=75992838]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1097620349]
+[node name="HitboxWalk" type="CollisionShape2D" parent="." unique_id=815291062]

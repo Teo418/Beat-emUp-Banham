@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dnmnxuum0gsb0"]
+
+[ext_resource type="Texture2D" uid="uid://cfoapdmmku3p3" path="res://assets/art/props/chicken.png" id="1_oywuv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oywuv"]
+radius = 4.0
+height = 16.0
+
+[node name="Pollo" type="Area2D" unique_id=1628391654]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281615758]
+position = Vector2(0, -5)
+texture = ExtResource("1_oywuv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1953669205]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oywuv")
