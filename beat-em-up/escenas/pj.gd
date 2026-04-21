@@ -10,11 +10,11 @@ extends CharacterBody2D
 
 @onready var animaciones = $Animaciones
 @onready var golpesEnemigos = $HitboxGolpesEnemigos
+@onready var hitboxWalk = $HitboxGolpesEnemigos
 
 var estaAtacando = false
 var puedeAtacar = true
 var aim = Vector2.RIGHT
-var ataques :Array = ["Jab", "Recto", "PatadaFrontal", "PatadaTrasera"]
 
 #enum Estado {IDLE, WALK}
 #
@@ -48,21 +48,18 @@ func _physics_process(delta: float) -> void:
 		estaAtacando = false
 		puedeAtacar = true
 		animaciones.play("Idle")
-	print("aim: ", aim, " | golpes pos: ", golpesEnemigos.position.x)
 
 func _input(event: InputEvent) -> void:
-	if not _validarAtaque():
-		return
-	for i in ataques.size():
-		if event.is_action_pressed(ataques[i]):
-			_iniciarAtaque(ataques[i])
-			break
+	if event.is_action_pressed("Combo") and _validarAccion():
+		_iniciarAtaque()
+	#elif event.is_action_pressed("Agarrar") and _validarAccion():
+		#_agarrar()
 
 func _invertir() -> void:
 	estaAtacando = !estaAtacando
 	puedeAtacar = !puedeAtacar
 
-func _validarAtaque() -> bool:
+func _validarAccion() -> bool:
 	return puedeAtacar and not estaAtacando
 
 func _animation() -> void:
@@ -73,16 +70,20 @@ func _animation() -> void:
 	else:
 		animaciones.play("Walk")
 
-func _iniciarAtaque(ataque: String) -> void:
+func _iniciarAtaque() -> void:
 	_invertir()
-	animaciones.play(ataque)
+	animaciones.play("Combo")
 	var bodies: Array = golpesEnemigos.get_overlapping_bodies()
 	if bodies.size() > 0:
 		bodies.front().queue_free()
 
+#func _agarrar() -> void:
+	#_invertir()
+	#animaciones.play("")
+	#var bodies: Array = 
 
 func _on_animacion_finished(anim_name: StringName) -> void:
-	if anim_name == "Jab":
+	if anim_name == "Combo":
 		_invertir()
 		animaciones.play("Idle")
 
