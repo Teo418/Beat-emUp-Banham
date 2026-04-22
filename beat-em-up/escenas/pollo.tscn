@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dnmnxuum0gsb0"]
 
+[ext_resource type="Script" uid="uid://dgj2cljaxbrvn" path="res://escenas/pollo.gd" id="1_16ems"]
 [ext_resource type="Texture2D" uid="uid://cfoapdmmku3p3" path="res://assets/art/props/chicken.png" id="1_oywuv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oywuv"]
@@ -9,6 +10,7 @@ height = 16.0
 [node name="Pollo" type="Area2D" unique_id=1628391654]
 collision_layer = 16
 collision_mask = 0
+script = ExtResource("1_16ems")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281615758]
 position = Vector2(0, -5)

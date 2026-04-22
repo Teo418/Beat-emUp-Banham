@@ -3,6 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pj.tscn" id="1_tml57"]
 [ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_og8m0"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umopg"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(48, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb6kn"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvhjk"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(192, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxfih"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 192, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4beg"]
 atlas = ExtResource("2_jpodt")
 region = Rect2(0, 96, 48, 48)
@@ -131,6 +151,26 @@ region = Rect2(336, 48, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_og8m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umopg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb6kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvhjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxfih")
+}],
+"loop": false,
+"name": &"Agarrar",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_d4beg")
 }, {
 "duration": 1.0,
@@ -246,6 +286,10 @@ height = 14.0
 radius = 4.0
 height = 16.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xutah"]
+radius = 3.0
+height = 14.0
+
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 velocidad = 90
 
@@ -254,7 +298,7 @@ texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_gjfif")
-animation = &"Combo"
+animation = &"Agarrar"
 
 [node name="Skin" parent="." index="1" unique_id=525006105]
 visible = false
@@ -277,3 +321,12 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=1836124690]
 shape = SubResource("CapsuleShape2D_njcx7")
+
+[node name="HitboxItems" type="Area2D" parent="." index="5" unique_id=1546042035]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxItems" index="0" unique_id=333687621]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xutah")

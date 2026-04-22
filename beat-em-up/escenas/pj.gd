@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var animaciones = $Animaciones
 @onready var golpesEnemigos = $HitboxGolpesEnemigos
 @onready var hitboxWalk = $HitboxGolpesEnemigos
+@onready var hitboxRecoger = $HitboxItems
 
 var estaAtacando = false
 var puedeAtacar = true
@@ -39,53 +40,63 @@ func _physics_process(delta: float) -> void:
 		aim = Vector2.RIGHT * sign(direction.x)
 		animaciones.flip_h = direction.x < 0
 	golpesEnemigos.position.x = abs(golpesEnemigos.position.x) * aim.x
-	if not estaAtacando:
-		if direction != Vector2.ZERO:
-			animaciones.play("Walk")
-		else:
+	if Input.is_action_pressed("Combo") :
+		if _validarAccion():
+			estaAtacando = true
+			puedeAtacar = false
+		animaciones.play("Combo")
+		var bodies: Array = golpesEnemigos.get_overlapping_bodies()
+		if bodies.size() > 0:
+			bodies.front().queue_free()
+	if estaAtacando and not Input.is_action_pressed("Combo"):
+		var acciones = ["Agarrar", "Idle", "Walk"]
+		if animaciones.animation not in acciones:
+			estaAtacando = false
+			puedeAtacar = true
 			animaciones.play("Idle")
 	if estaAtacando and not animaciones.is_playing():
 		estaAtacando = false
 		puedeAtacar = true
 		animaciones.play("Idle")
+	if not estaAtacando:
+		if direction != Vector2.ZERO:
+			animaciones.play("Walk")
+		else:
+			animaciones.play("Idle")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Combo") and _validarAccion():
-		_iniciarAtaque()
-	#elif event.is_action_pressed("Agarrar") and _validarAccion():
-		#_agarrar()
-
-func _invertir() -> void:
-	estaAtacando = !estaAtacando
-	puedeAtacar = !puedeAtacar
+	#if event.is_action_pressed("Combo") and _validarAccion():
+		#_iniciarAtaque()
+	#elif estaAtacando and not Input.is_action_pressed("Combo"):
+		#_invertir()
+		#animaciones.play("Idle")
+	if event.is_action_pressed("Agarrar") and _validarAccion():
+		_agarrar()
 
 func _validarAccion() -> bool:
 	return puedeAtacar and not estaAtacando
 
-func _animation() -> void:
-	if estaAtacando:
-		return
-	elif velocity.x == 0:
-		animaciones.play("Idle")
-	else:
-		animaciones.play("Walk")
-
-func _iniciarAtaque() -> void:
-	_invertir()
-	animaciones.play("Combo")
-	var bodies: Array = golpesEnemigos.get_overlapping_bodies()
-	if bodies.size() > 0:
-		bodies.front().queue_free()
-
-#func _agarrar() -> void:
-	#_invertir()
-	#animaciones.play("")
-	#var bodies: Array = 
+func _agarrar() -> void:
+	estaAtacando = true
+	puedeAtacar = false
+	animaciones.play("Agarrar")
+	var items: Array = hitboxRecoger.get_overlapping_areas()
+	if items.size() > 0:
+		vida += items.front().valor
+		items.front().queue_free()
 
 func _on_animacion_finished(anim_name: StringName) -> void:
+	print("animacion terminada: ", anim_name)
 	if anim_name == "Combo":
-		_invertir()
+		estaAtacando = false
+		puedeAtacar = true
+		#mismo problema que con _agarrar() con _invertir() adentro
 		animaciones.play("Idle")
-
-func _animacionTerminada() -> void:
-	golpesEnemigos.position.x = abs(golpesEnemigos.position.x) * aim.x
+	elif anim_name == "Agarrar":
+		var items: Array = hitboxRecoger.get_overlapping_areas()
+		if items.size() > 0:
+			vida += items.front().valor
+			items.front().queue_free()
+		estaAtacando = false
+		puedeAtacar = true
+		animaciones.play("Idle")
