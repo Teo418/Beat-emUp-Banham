@@ -2,8 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://b5siu087oosyp" path="res://assets/art/backgrounds/street-background.png" id="1_g3dr0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dayui"]
+size = Vector2(417, 20)
+
 [node name="Juego" type="Node2D" unique_id=1771878247]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=170720443]
 texture = ExtResource("1_g3dr0")
 centered = false
+
+[node name="Bordes" type="Node2D" parent="." unique_id=1180389055]
+
+[node name="Superior" type="StaticBody2D" parent="Bordes" unique_id=1204671770]
+position = Vector2(199, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordes/Superior" unique_id=1793054485]
+shape = SubResource("RectangleShape2D_dayui")
+
+[node name="Inferior" type="StaticBody2D" parent="Bordes" unique_id=1536318907]
+position = Vector2(199, 74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bordes/Inferior" unique_id=2082164567]
+shape = SubResource("RectangleShape2D_dayui")

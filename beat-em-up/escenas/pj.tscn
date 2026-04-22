@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cd7vqouclp2de" path="res://assets/art/characters/shadow.png" id="2_7d6uc"]
 
 [node name="Personaje" type="CharacterBody2D" unique_id=416103180]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_3jpch")
 
 [node name="Skin" type="Sprite2D" parent="." unique_id=525006105]

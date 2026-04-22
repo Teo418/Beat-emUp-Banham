@@ -2,6 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dnr738nc3ffsq" path="res://escenas/barril.tscn" id="1_bob0o"]
 
-[node name="Objeto" type="Node2D" unique_id=995756291]
+[node name="Destructible" type="Node2D" unique_id=995756291]
 
 [node name="Barril" parent="." unique_id=1288150357 instance=ExtResource("1_bob0o")]

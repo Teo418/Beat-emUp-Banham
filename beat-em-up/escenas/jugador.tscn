@@ -3,10 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pj.tscn" id="1_tml57"]
 [ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_og8m0"]
-atlas = ExtResource("2_jpodt")
-region = Rect2(0, 240, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_umopg"]
 atlas = ExtResource("2_jpodt")
 region = Rect2(48, 288, 48, 48)
@@ -151,9 +147,6 @@ region = Rect2(336, 48, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_og8m0")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_umopg")
 }, {
 "duration": 1.0,
@@ -284,21 +277,23 @@ height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njcx7"]
 radius = 4.0
-height = 16.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xutah"]
 radius = 3.0
 height = 14.0
 
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
-velocidad = 90
+collision_layer = 2
+collision_mask = 1
+velocidad = 40
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="." index="0" unique_id=965245360]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(0, -24)
+position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_gjfif")
-animation = &"Agarrar"
+animation = &"Idle"
 
 [node name="Skin" parent="." index="1" unique_id=525006105]
 visible = false
@@ -309,13 +304,15 @@ offset = Vector2(-24, -48)
 hframes = 10
 vframes = 10
 
+[node name="Sombra" parent="." index="2" unique_id=855216036]
+position = Vector2(0, 1)
+
 [node name="HitboxWalk" parent="." index="3" unique_id=815291062]
-position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jpodt")
 
 [node name="HitboxGolpesEnemigos" type="Area2D" parent="." index="4" unique_id=1953917550]
-position = Vector2(11, -13)
+position = Vector2(11, -12)
 collision_layer = 0
 collision_mask = 8
 
@@ -327,6 +324,5 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxItems" index="0" unique_id=333687621]
-position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_xutah")

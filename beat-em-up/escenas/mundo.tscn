@@ -1,19 +1,46 @@
 [gd_scene format=3 uid="uid://27pfrcxlra87"]
 
 [ext_resource type="PackedScene" uid="uid://c1en63kq0clwt" path="res://escenas/juego.tscn" id="1_6ba58"]
+[ext_resource type="Script" uid="uid://muyihmy5dd1t" path="res://escenas/mundo.gd" id="1_16hu1"]
 [ext_resource type="PackedScene" uid="uid://bj3404gqofk43" path="res://escenas/jugador.tscn" id="2_6wjgb"]
-[ext_resource type="PackedScene" uid="uid://cq8dkfblooote" path="res://escenas/objeto.tscn" id="3_glrvs"]
+[ext_resource type="PackedScene" uid="uid://dnr738nc3ffsq" path="res://escenas/barril.tscn" id="4_16hu1"]
 [ext_resource type="PackedScene" uid="uid://dnmnxuum0gsb0" path="res://escenas/pollo.tscn" id="4_v12yk"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16hu1"]
+size = Vector2(6, 64)
+
 [node name="Mundo" type="Node2D" unique_id=476764460]
+script = ExtResource("1_16hu1")
 
 [node name="Juego" parent="." unique_id=1771878247 instance=ExtResource("1_6ba58")]
 
-[node name="Objeto" parent="." unique_id=995756291 instance=ExtResource("3_glrvs")]
-position = Vector2(66, 44)
+[node name="Camara" type="Camera2D" parent="." unique_id=829655866]
+position = Vector2(50, 32)
 
-[node name="Jugador" parent="." unique_id=416103180 instance=ExtResource("2_6wjgb")]
-position = Vector2(33, 43)
+[node name="BordesInvisibles" type="Node2D" parent="Camara" unique_id=1472333659]
+
+[node name="Izquierda" type="StaticBody2D" parent="Camara/BordesInvisibles" unique_id=213127710]
+position = Vector2(-52, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camara/BordesInvisibles/Izquierda" unique_id=891957329]
+shape = SubResource("RectangleShape2D_16hu1")
+
+[node name="Derecha" type="StaticBody2D" parent="Camara/BordesInvisibles" unique_id=590149640]
+position = Vector2(52, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camara/BordesInvisibles/Derecha" unique_id=1412058264]
+shape = SubResource("RectangleShape2D_16hu1")
+
+[node name="ObjetosJuego" type="Node2D" parent="." unique_id=1211476177]
+y_sort_enabled = true
+
+[node name="Jugador" parent="ObjetosJuego" unique_id=416103180 instance=ExtResource("2_6wjgb")]
+position = Vector2(26, 48)
+collision_layer = 1
+collision_mask = 9
+
+[node name="Barril" parent="ObjetosJuego" unique_id=1288150357 instance=ExtResource("4_16hu1")]
+position = Vector2(53, 52)
 
 [node name="Pollo" parent="." unique_id=1628391654 instance=ExtResource("4_v12yk")]
 position = Vector2(80, 55)

@@ -7,15 +7,16 @@ radius = 4.0
 height = 16.0
 
 [node name="Barril" type="StaticBody2D" unique_id=1288150357]
-position = Vector2(0, -16)
 collision_layer = 8
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=148104633]
 texture = ExtResource("1_nucf1")
+centered = false
+offset = Vector2(-16, -32)
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1173799786]
-position = Vector2(0, 11)
+position = Vector2(0, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_cxgej")
