@@ -81,6 +81,7 @@ PatadaTrasera={
 2d_physics/layer_5="Comida"
 2d_physics/layer_6="HitboxPersonaje"
 2d_physics/layer_7="HitboxEnemigo"
+2d_physics/layer_8="HitboxObjetos"
 
 [physics]
 

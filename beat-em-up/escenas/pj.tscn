@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ckhmg7ryurvn7" path="res://escenas/pj.gd" id="1_3jpch"]
 [ext_resource type="Texture2D" uid="uid://cd7vqouclp2de" path="res://assets/art/characters/shadow.png" id="2_7d6uc"]
+[ext_resource type="PackedScene" uid="uid://cfnth3wcvnduf" path="res://escenas/receptor_danio.tscn" id="3_s2gj3"]
 
 [node name="Personaje" type="CharacterBody2D" unique_id=416103180]
 collision_layer = 0
@@ -16,3 +17,7 @@ centered = false
 offset = Vector2(-7, 0)
 
 [node name="HitboxWalk" type="CollisionShape2D" parent="." unique_id=815291062]
+
+[node name="HitboxGolpesEnemigos" parent="." unique_id=1622214929 instance=ExtResource("3_s2gj3")]
+
+[editable path="HitboxGolpesEnemigos"]

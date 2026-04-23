@@ -275,13 +275,12 @@ animations = [{
 radius = 3.0
 height = 14.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_njcx7"]
-radius = 4.0
-height = 12.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xutah"]
 radius = 3.0
 height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpodt"]
+size = Vector2(10, 6)
 
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 collision_layer = 2
@@ -311,18 +310,16 @@ position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_jpodt")
 
-[node name="HitboxGolpesEnemigos" type="Area2D" parent="." index="4" unique_id=1953917550]
-position = Vector2(11, -12)
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=1836124690]
-shape = SubResource("CapsuleShape2D_njcx7")
-
-[node name="HitboxItems" type="Area2D" parent="." index="5" unique_id=1546042035]
+[node name="HitboxItems" type="Area2D" parent="." index="4" unique_id=1546042035]
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxItems" index="0" unique_id=333687621]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_xutah")
+
+[node name="CollisionShape2D" parent="HitboxGolpesEnemigos" parent_id_path=PackedInt32Array(1622214929) index="0" unique_id=315961478]
+shape = SubResource("RectangleShape2D_jpodt")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[editable path="HitboxGolpesEnemigos"]

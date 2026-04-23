@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cfnth3wcvnduf"]
+
+[node name="ReceptorDanio" type="Area2D" unique_id=1622214929]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=315961478]
