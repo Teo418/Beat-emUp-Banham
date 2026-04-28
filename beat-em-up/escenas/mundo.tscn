@@ -40,7 +40,7 @@ collision_layer = 1
 collision_mask = 9
 
 [node name="Barril" parent="ObjetosJuego" unique_id=1288150357 instance=ExtResource("4_16hu1")]
-position = Vector2(53, 52)
+position = Vector2(53, 50)
 
 [node name="Pollo" parent="." unique_id=1628391654 instance=ExtResource("4_v12yk")]
 position = Vector2(80, 55)

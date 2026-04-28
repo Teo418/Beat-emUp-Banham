@@ -10,7 +10,6 @@ extends CharacterBody2D
 
 @onready var animaciones = $Animaciones
 @onready var golpesEnemigos = $HitboxGolpesEnemigos
-@onready var hitboxWalk = $HitboxGolpesEnemigos
 @onready var hitboxRecoger = $HitboxItems
 
 var estaAtacando = false
@@ -20,15 +19,11 @@ var aim = Vector2.RIGHT
 #enum Estado {IDLE, WALK}
 #
 #var estado = Estado.IDLE
-
 func _ready() -> void:
 	animaciones.animation_finished.connect(_on_animacion_finished)
-
 #func _process(delta: float) -> void:
 	#_input()
-
 #func _movimiento() -> void:
-
 func _physics_process(delta: float) -> void:
 	var direction := Vector2.ZERO
 	direction.x = Input.get_action_strength("Derecha") - Input.get_action_strength("Izquierda")
@@ -45,9 +40,9 @@ func _physics_process(delta: float) -> void:
 			estaAtacando = true
 			puedeAtacar = false
 		animaciones.play("Combo")
-		var bodies: Array = golpesEnemigos.get_overlapping_bodies()
+		var bodies: Array = golpesEnemigos.get_overlapping_areas()
 		if bodies.size() > 0:
-			bodies.front().queue_free()
+			bodies.front().get_parent().queue_free()
 	if estaAtacando and not Input.is_action_pressed("Combo"):
 		var acciones = ["Agarrar", "Idle", "Walk"]
 		if animaciones.animation not in acciones:

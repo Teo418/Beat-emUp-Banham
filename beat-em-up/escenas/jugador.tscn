@@ -318,7 +318,11 @@ collision_mask = 16
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_xutah")
 
-[node name="CollisionShape2D" parent="HitboxGolpesEnemigos" parent_id_path=PackedInt32Array(1622214929) index="0" unique_id=315961478]
+[node name="HitboxGolpesEnemigos" parent="." index="5" unique_id=1622214929]
+position = Vector2(10, -11)
+collision_mask = 200
+
+[node name="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=315961478]
 shape = SubResource("RectangleShape2D_jpodt")
 debug_color = Color(1, 0, 0, 0.41960785)
 
