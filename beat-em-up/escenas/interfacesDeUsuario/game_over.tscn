@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://mj3b7of6t3jf"]
+
+[ext_resource type="Script" uid="uid://baldrlxoh7pno" path="res://escenas/interfacesDeUsuario/game_over.gd" id="1_ubk5c"]
+[ext_resource type="Texture2D" uid="uid://cds6osto6mp45" path="res://assets/art/backgrounds/fondoNig.jpg" id="2_my067"]
+[ext_resource type="FontFile" uid="uid://dfphmwdk0n8dd" path="res://assets/fonts/PressStart2P.ttf" id="3_my067"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my067"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="GameOver" type="Control" unique_id=355117667]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ubk5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1529928643]
+scale = Vector2(0.3333333, 0.38095236)
+texture = ExtResource("2_my067")
+centered = false
+
+[node name="Button" type="Button" parent="." unique_id=1534735777]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 44.0
+offset_right = 62.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("3_my067")
+theme_override_font_sizes/font_size = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_my067")
+text = "RESTART"
+
+[node name="game_over" type="TextEdit" parent="." unique_id=1494680034]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 87.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("3_my067")
+theme_override_font_sizes/font_size = 7
+text = "Game Over"

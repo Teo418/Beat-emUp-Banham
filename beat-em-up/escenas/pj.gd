@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 var estaAtacando = false
 var puedeAtacar = true
+var estaRecibiendoDanio = false
 var aim = Vector2.RIGHT
 
 #enum Estado {IDLE, WALK}
@@ -31,6 +32,8 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * velocidad
 	move_and_slide()
+	if estaRecibiendoDanio:
+		return
 	if direction.x != 0 and not estaAtacando:
 		aim = Vector2.RIGHT * sign(direction.x)
 		animaciones.flip_h = direction.x < 0
@@ -71,6 +74,13 @@ func _input(event: InputEvent) -> void:
 func _validarAccion() -> bool:
 	return puedeAtacar and not estaAtacando
 
+func _recibirDanio(cantidad: int):
+	if estaRecibiendoDanio:
+		return
+	vida -= cantidad
+	estaRecibiendoDanio = true
+	animaciones.play("Danio")
+
 func _agarrar() -> void:
 	estaAtacando = true
 	puedeAtacar = false
@@ -81,7 +91,6 @@ func _agarrar() -> void:
 		items.front().queue_free()
 
 func _on_animacion_finished(anim_name: StringName) -> void:
-	print("animacion terminada: ", anim_name)
 	if anim_name == "Combo":
 		estaAtacando = false
 		puedeAtacar = true
@@ -95,3 +104,10 @@ func _on_animacion_finished(anim_name: StringName) -> void:
 		estaAtacando = false
 		puedeAtacar = true
 		animaciones.play("Idle")
+	elif anim_name == "Danio":
+		estaRecibiendoDanio = false
+		if vida <= 0:
+			animaciones.play("Muerte")
+			get_tree().change_scene_to_file("res://escenas/interfacesDeUsuario/game_over.tscn")
+		else:
+			animaciones.play("Idle")

@@ -95,6 +95,22 @@ region = Rect2(192, 240, 48, 48)
 atlas = ExtResource("2_jpodt")
 region = Rect2(240, 240, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_og8m0"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rye4"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmy0r"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(48, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh08b"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(96, 336, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpodt"]
 atlas = ExtResource("2_jpodt")
 region = Rect2(0, 0, 48, 48)
@@ -110,6 +126,22 @@ region = Rect2(96, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovq70"]
 atlas = ExtResource("2_jpodt")
 region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b4ac"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsa3r"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roy18"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(48, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3iew"]
+atlas = ExtResource("2_jpodt")
+region = Rect2(96, 384, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_as36m"]
 atlas = ExtResource("2_jpodt")
@@ -226,6 +258,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_og8m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rye4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmy0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh08b")
+}],
+"loop": true,
+"name": &"Danio",
+"speed": 6.7
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jpodt")
 }, {
 "duration": 1.0,
@@ -239,6 +288,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 6.7
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b4ac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsa3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roy18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3iew")
+}],
+"loop": false,
+"name": &"Muerte",
 "speed": 6.7
 }, {
 "frames": [{
@@ -283,6 +349,7 @@ height = 14.0
 size = Vector2(10, 6)
 
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
+position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 1
 velocidad = 40
@@ -319,7 +386,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_xutah")
 
 [node name="HitboxGolpesEnemigos" parent="." index="5" unique_id=1622214929]
-position = Vector2(10, -11)
+position = Vector2(10, -12)
 collision_mask = 200
 
 [node name="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=315961478]
