@@ -45,7 +45,12 @@ func _physics_process(delta: float) -> void:
 		animaciones.play("Combo")
 		var bodies: Array = golpesEnemigos.get_overlapping_areas()
 		if bodies.size() > 0:
-			bodies.front().get_parent().queue_free()
+			var area = bodies.front()
+			var objetivo = area.get_parent()  
+			if area.has_method("emitir_danio"):
+				area.emitir_danio(global_position, danio)
+			else:
+				objetivo.queue_free()  # enemigo normal
 	if estaAtacando and not Input.is_action_pressed("Combo"):
 		var acciones = ["Agarrar", "Idle", "Walk"]
 		if animaciones.animation not in acciones:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cq8dkfblooote"]
 
-[ext_resource type="PackedScene" uid="uid://dnr738nc3ffsq" path="res://escenas/barril.tscn" id="1_bob0o"]
+[ext_resource type="PackedScene" uid="uid://dnr738nc3ffsq" path="res://escenas/objetos/barril.tscn" id="1_bob0o"]
 
 [node name="Destructible" type="Node2D" unique_id=995756291]
 

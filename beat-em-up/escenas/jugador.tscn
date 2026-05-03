@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bj3404gqofk43"]
 
-[ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pj.tscn" id="1_tml57"]
+[ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pjs/pj.tscn" id="1_tml57"]
 [ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umopg"]
