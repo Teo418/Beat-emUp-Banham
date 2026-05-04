@@ -49,8 +49,6 @@ func _physics_process(delta: float) -> void:
 			var objetivo = area.get_parent()  
 			if area.has_method("emitir_danio"):
 				area.emitir_danio(global_position, danio)
-			else:
-				objetivo.queue_free()  # enemigo normal
 	if estaAtacando and not Input.is_action_pressed("Combo"):
 		var acciones = ["Agarrar", "Idle", "Walk"]
 		if animaciones.animation not in acciones:

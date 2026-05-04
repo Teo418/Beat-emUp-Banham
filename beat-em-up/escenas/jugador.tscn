@@ -351,7 +351,7 @@ size = Vector2(10, 6)
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 position = Vector2(0, -1)
 collision_layer = 2
-collision_mask = 1
+collision_mask = 9
 velocidad = 40
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="." index="0" unique_id=965245360]
