@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pjs/pj.tscn" id="1_tml57"]
 [ext_resource type="Texture2D" uid="uid://dq7nxudl2dftg" path="res://assets/art/characters/player.png" id="2_jpodt"]
+[ext_resource type="PackedScene" uid="uid://cfnth3wcvnduf" path="res://escenas/objetos/receptor_danio.tscn" id="3_n0rn2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umopg"]
 atlas = ExtResource("2_jpodt")
@@ -348,10 +349,11 @@ height = 14.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpodt"]
 size = Vector2(10, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4et3f"]
+size = Vector2(10, 23)
+
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 position = Vector2(0, -1)
-collision_layer = 2
-collision_mask = 9
 velocidad = 40
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="." index="0" unique_id=965245360]
@@ -393,4 +395,12 @@ collision_mask = 200
 shape = SubResource("RectangleShape2D_jpodt")
 debug_color = Color(1, 0, 0, 0.41960785)
 
+[node name="ReceptorDanio" parent="." index="6" unique_id=199740863 instance=ExtResource("3_n0rn2")]
+
+[node name="CollisionShape2D" parent="ReceptorDanio" index="0" unique_id=315961478]
+position = Vector2(1, -10.5)
+shape = SubResource("RectangleShape2D_4et3f")
+debug_color = Color(0, 1, 0, 0.41960785)
+
 [editable path="HitboxGolpesEnemigos"]
+[editable path="ReceptorDanio"]

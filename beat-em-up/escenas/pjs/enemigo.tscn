@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://csmjonfhhknn6"]
+
+[ext_resource type="PackedScene" uid="uid://fuw8tvgbfune" path="res://escenas/pjs/pj.tscn" id="1_4omvi"]
+[ext_resource type="Texture2D" uid="uid://bvecqrhx4lafa" path="res://assets/art/characters/enemy_punk.png" id="2_kspf3"]
+[ext_resource type="PackedScene" uid="uid://cfnth3wcvnduf" path="res://escenas/objetos/receptor_danio.tscn" id="3_kspf3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4omvi"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kspf3"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehj4y"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atmyk"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et7uv"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_464nd"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3xyu"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(240, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcrcq"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(288, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7ayc"]
+atlas = ExtResource("2_kspf3")
+region = Rect2(336, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kspf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4omvi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kspf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehj4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atmyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et7uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_464nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3xyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcrcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7ayc")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kspf3"]
+size = Vector2(10, 25.5)
+
+[node name="Enemigo" unique_id=416103180 instance=ExtResource("1_4omvi")]
+collision_layer = 4
+collision_mask = 12
+vida = 20
+velocidad = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0" unique_id=447290713]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_kspf3")
+animation = &"Idle"
+
+[node name="Skin" parent="." index="1" unique_id=525006105]
+visible = false
+position = Vector2(-24, -48)
+texture = ExtResource("2_kspf3")
+centered = false
+hframes = 10
+vframes = 10
+
+[node name="ReceptorDanio" parent="." index="5" unique_id=1622214929 instance=ExtResource("3_kspf3")]
+
+[node name="CollisionShape2D" parent="ReceptorDanio" index="0" unique_id=315961478]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_kspf3")
+debug_color = Color(0, 1, 0, 0.41960785)
+
+[editable path="HitboxGolpesEnemigos"]
+[editable path="ReceptorDanio"]

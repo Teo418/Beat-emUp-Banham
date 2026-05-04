@@ -22,62 +22,77 @@ var aim = Vector2.RIGHT
 #var estado = Estado.IDLE
 func _ready() -> void:
 	animaciones.animation_finished.connect(_on_animacion_finished)
-#func _process(delta: float) -> void:
-	#_input()
-#func _movimiento() -> void:
+
 func _physics_process(delta: float) -> void:
+	var direction := _obtenerDireccion()
+	_mover(direction)
+	if estaRecibiendoDanio:
+		return
+	_actualizarAim(direction)
+	_procesarInput(direction)
+	_actualizarAnimacion(direction)
+
+func _obtenerDireccion() -> Vector2:
 	var direction := Vector2.ZERO
 	direction.x = Input.get_action_strength("Derecha") - Input.get_action_strength("Izquierda")
 	direction.y = Input.get_action_strength("Abajo") - Input.get_action_strength("Arriba")
-	direction = direction.normalized()
+	return direction.normalized()
+
+func _mover(direction: Vector2) -> void:
 	velocity = direction * velocidad
 	move_and_slide()
-	if estaRecibiendoDanio:
-		return
+
+func _actualizarAim(direction: Vector2) -> void:
 	if direction.x != 0 and not estaAtacando:
 		aim = Vector2.RIGHT * sign(direction.x)
 		animaciones.flip_h = direction.x < 0
 	golpesEnemigos.position.x = abs(golpesEnemigos.position.x) * aim.x
-	if Input.is_action_pressed("Combo") :
-		if _validarAccion():
-			estaAtacando = true
-			puedeAtacar = false
-		animaciones.play("Combo")
-		var bodies: Array = golpesEnemigos.get_overlapping_areas()
-		if bodies.size() > 0:
-			var area = bodies.front()
-			var objetivo = area.get_parent()  
-			if area.has_method("emitir_danio"):
-				area.emitir_danio(global_position, danio)
-	if estaAtacando and not Input.is_action_pressed("Combo"):
-		var acciones = ["Agarrar", "Idle", "Walk"]
-		if animaciones.animation not in acciones:
-			estaAtacando = false
-			puedeAtacar = true
-			animaciones.play("Idle")
-	if estaAtacando and not animaciones.is_playing():
-		estaAtacando = false
-		puedeAtacar = true
-		animaciones.play("Idle")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Agarrar") and _validarAccion():
+		_agarrar()
+
+func _procesarInput(direction: Vector2) -> void:
+	if Input.is_action_pressed("Combo"):
+		_procesarCombo()
+	elif estaAtacando:
+		_verificarFinAtaque()
+
+func _procesarCombo() -> void:
+	if _validarAccion():
+		estaAtacando = true
+		puedeAtacar = false
+	animaciones.play("Combo")
+	var bodies: Array = golpesEnemigos.get_overlapping_areas()
+	if bodies.size() > 0:
+		var area = bodies.front()
+		if area.has_method("emitir_danio"):
+			area.emitir_danio(global_position, danio)
+
+func _verificarFinAtaque() -> void:
+	var accionesQueCortanAtaque = ["Agarrar", "Idle", "Walk"]
+	if not Input.is_action_pressed("Combo"):
+		if animaciones.animation not in accionesQueCortanAtaque:
+			_resetearAtaque()
+	if not animaciones.is_playing():
+		_resetearAtaque()
+
+func _resetearAtaque() -> void:
+	estaAtacando = false
+	puedeAtacar = true
+	animaciones.play("Idle")
+
+func _actualizarAnimacion(direction: Vector2) -> void:
 	if not estaAtacando:
 		if direction != Vector2.ZERO:
 			animaciones.play("Walk")
 		else:
 			animaciones.play("Idle")
 
-func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("Combo") and _validarAccion():
-		#_iniciarAtaque()
-	#elif estaAtacando and not Input.is_action_pressed("Combo"):
-		#_invertir()
-		#animaciones.play("Idle")
-	if event.is_action_pressed("Agarrar") and _validarAccion():
-		_agarrar()
-
 func _validarAccion() -> bool:
 	return puedeAtacar and not estaAtacando
 
-func _recibirDanio(cantidad: int):
+func _recibirDanio(cantidad: int) -> void:
 	if estaRecibiendoDanio:
 		return
 	vida -= cantidad
@@ -88,29 +103,28 @@ func _agarrar() -> void:
 	estaAtacando = true
 	puedeAtacar = false
 	animaciones.play("Agarrar")
+	_recogerItem()
+
+func _recogerItem() -> void:
 	var items: Array = hitboxRecoger.get_overlapping_areas()
 	if items.size() > 0:
 		vida += items.front().valor
 		items.front().queue_free()
 
+func _procesarPostDanio() -> void:
+	estaRecibiendoDanio = false
+	if vida <= 0:
+		animaciones.play("Muerte")
+		get_tree().change_scene_to_file("res://escenas/interfacesDeUsuario/game_over.tscn")
+	else:
+		animaciones.play("Idle")
+
 func _on_animacion_finished(anim_name: StringName) -> void:
-	if anim_name == "Combo":
-		estaAtacando = false
-		puedeAtacar = true
-		#mismo problema que con _agarrar() con _invertir() adentro
-		animaciones.play("Idle")
-	elif anim_name == "Agarrar":
-		var items: Array = hitboxRecoger.get_overlapping_areas()
-		if items.size() > 0:
-			vida += items.front().valor
-			items.front().queue_free()
-		estaAtacando = false
-		puedeAtacar = true
-		animaciones.play("Idle")
-	elif anim_name == "Danio":
-		estaRecibiendoDanio = false
-		if vida <= 0:
-			animaciones.play("Muerte")
-			get_tree().change_scene_to_file("res://escenas/interfacesDeUsuario/game_over.tscn")
-		else:
-			animaciones.play("Idle")
+	match anim_name:
+		"Combo":
+			_resetearAtaque()
+		"Agarrar":
+			_recogerItem()
+			_resetearAtaque()
+		"Danio":
+			_procesarPostDanio()
