@@ -356,8 +356,8 @@ size = Vector2(10, 23)
 [node name="Jugador" unique_id=416103180 instance=ExtResource("1_tml57")]
 position = Vector2(0, -1)
 script = ExtResource("2_4et3f")
-vida = 100
-danio = 5
+vida = null
+danio = null
 velocidad = 40
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="." index="0" unique_id=965245360]
@@ -393,7 +393,6 @@ shape = SubResource("CapsuleShape2D_xutah")
 
 [node name="HitboxGolpesEnemigos" parent="." index="5" unique_id=1622214929]
 position = Vector2(10, -12)
-collision_layer = 256
 collision_mask = 200
 
 [node name="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=315961478]
@@ -401,8 +400,6 @@ shape = SubResource("RectangleShape2D_jpodt")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="ReceptorDanio" parent="." index="6" unique_id=199740863 instance=ExtResource("3_n0rn2")]
-collision_layer = 32
-collision_mask = 512
 
 [node name="CollisionShape2D" parent="ReceptorDanio" index="0" unique_id=315961478]
 position = Vector2(1, -10.5)
