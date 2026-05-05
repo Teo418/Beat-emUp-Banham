@@ -188,20 +188,19 @@ height = 14.0
 size = Vector2(10, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kspf3"]
-size = Vector2(10, 25.75)
+size = Vector2(10, 10)
 
 [node name="Enemigo" unique_id=416103180 instance=ExtResource("1_4omvi")]
 collision_layer = 4
 collision_mask = 1
 script = ExtResource("2_ehj4y")
 vida = 20
-velocidad = 30
+velocidad = 10
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="." index="0" unique_id=447290713]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_kspf3")
-animation = &"Walk"
-frame_progress = 0.79640305
+animation = &"Danio"
 
 [node name="Skin" parent="." index="1" unique_id=525006105]
 visible = false
@@ -212,22 +211,25 @@ hframes = 10
 vframes = 10
 
 [node name="HitboxWalk" parent="." index="3" unique_id=815291062]
-position = Vector2(0, -4)
+position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_kspf3")
 
 [node name="HitboxGolpesEnemigos" parent="." index="4" unique_id=1622214929]
 position = Vector2(11, -13)
+collision_layer = 512
+collision_mask = 32
 
 [node name="CollisionShape2D" parent="HitboxGolpesEnemigos" index="0" unique_id=315961478]
 shape = SubResource("RectangleShape2D_ehj4y")
 debug_color = Color(0.99607843, 0, 0, 0.41960785)
 
 [node name="ReceptorDanio" parent="." index="5" unique_id=482305714 instance=ExtResource("3_kspf3")]
-position = Vector2(0, -13)
+position = Vector2(0, -17)
+collision_layer = 64
+collision_mask = 256
 
 [node name="CollisionShape2D" parent="ReceptorDanio" index="0" unique_id=315961478]
-position = Vector2(0, 0.125)
 shape = SubResource("RectangleShape2D_kspf3")
 debug_color = Color(0, 1, 0, 0.41960785)
 

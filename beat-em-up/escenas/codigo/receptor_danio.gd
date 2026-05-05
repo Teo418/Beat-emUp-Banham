@@ -1,4 +1,3 @@
-
 extends Area2D
 
 signal danioRecibido(danio: int, direccion: Vector2)

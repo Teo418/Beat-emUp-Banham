@@ -41,15 +41,15 @@ position = Vector2(26, 48)
 [node name="Barril" parent="ObjetosJuego" unique_id=1288150357 instance=ExtResource("4_16hu1")]
 position = Vector2(53, 50)
 
-[node name="Enemigo" parent="ObjetosJuego" unique_id=81146539 node_paths=PackedStringArray("jugador") instance=ExtResource("6_6rb4a")]
-position = Vector2(78, 43)
-jugador = NodePath("../Jugador")
-danio = 0
-
-[node name="Enemigo2" parent="ObjetosJuego" unique_id=1606313036 node_paths=PackedStringArray("jugador") instance=ExtResource("6_6rb4a")]
-position = Vector2(53, 61)
-jugador = NodePath("../Jugador")
-danio = 0
-
-[node name="Pollo" parent="ObjetosJuego" unique_id=1628391654 instance=ExtResource("4_v12yk")]
+[node name="Pollo" parent="." unique_id=1628391654 instance=ExtResource("4_v12yk")]
 position = Vector2(80, 55)
+
+[node name="Enemigo" parent="." unique_id=81146539 node_paths=PackedStringArray("jugador") instance=ExtResource("6_6rb4a")]
+position = Vector2(78, 43)
+jugador = NodePath("../ObjetosJuego/Jugador")
+danio = 0
+
+[node name="Enemigo2" parent="." unique_id=1606313036 node_paths=PackedStringArray("jugador") instance=ExtResource("6_6rb4a")]
+position = Vector2(53, 61)
+jugador = NodePath("../ObjetosJuego/Jugador")
+danio = 0

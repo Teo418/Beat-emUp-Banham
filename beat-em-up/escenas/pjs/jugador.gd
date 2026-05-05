@@ -31,12 +31,13 @@ func _procesarCombo() -> void:
 	if _validarAccion():
 		estaAtacando = true
 		puedeAtacar = false
-	animaciones.play("Combo")
-	var bodies: Array = golpesEnemigos.get_overlapping_areas()
-	if bodies.size() > 0:
-		var area = bodies.front()
-		if area.has_method("emitir_danio"):
-			area.emitir_danio(global_position, danio)
+		animaciones.play("Combo")
+		# Solo busca el golpe al INICIO del combo, no cada frame
+		var bodies: Array = golpesEnemigos.get_overlapping_areas()
+		if bodies.size() > 0:
+			var area = bodies.front()
+			if area.has_method("emitir_danio"):
+				area.emitir_danio(global_position, danio)
 
 func _verificarFinAtaque() -> void:
 	var accionesQueCortanAtaque = ["Agarrar", "Idle", "Walk"]
@@ -67,10 +68,24 @@ func _on_animacion_finished(anim_name: StringName) -> void:
 			_recogerItem()
 			_resetearAtaque()
 
+func _recibirDanio(cantidad: int) -> void:
+	if estaRecibiendoDanio:
+		return
+	estaRecibiendoDanio = true
+	vida -= cantidad
+	animaciones.play("Danio")
+	if vida <= 0:
+		queue_free()
+		return
+	animaciones.play("Danio")
+	await animaciones.animation_finished
+	estaRecibiendoDanio = false
+
 func _procesarPostDanio() -> void:
 	estaRecibiendoDanio = false
 	if vida <= 0:
 		animaciones.play("Muerte")
+		await animaciones.animation_finished
 		get_tree().change_scene_to_file("res://escenas/interfacesDeUsuario/game_over.tscn")
 	else:
 		animaciones.play("Idle")

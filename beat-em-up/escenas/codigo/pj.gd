@@ -52,11 +52,18 @@ func _resetearAtaque() -> void:
 func _recibirDanio(cantidad: int) -> void:
 	if estaRecibiendoDanio:
 		return
-	vida -= cantidad
 	estaRecibiendoDanio = true
+	vida -= cantidad
 	animaciones.play("Danio")
+	if vida <= 0:
+		queue_free()
+		return
+	animaciones.play("Danio")
+	await animaciones.animation_finished
+	estaRecibiendoDanio = false
 
 func _on_animacion_finished(anim_name: StringName) -> void:
+	print("animacion terminada: ", anim_name)
 	match anim_name:
 		"Danio":
 			_procesarPostDanio()
